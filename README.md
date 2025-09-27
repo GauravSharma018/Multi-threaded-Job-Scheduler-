@@ -159,26 +159,101 @@ The project is built with standard Java and has no external dependencies.
 1.  **Clone the repository**:
     ```bash
     git clone https://github.com/GauravSharma018/Multi-threaded-Job-Scheduler
-    cd Multi-threaded-Job-Scheduler
+    cd C:\Users\gaura\Desktop\Coding\Multi-threaded-Job-Scheduler\
     ```
 
 2.  **Compile the code**:
     Navigate to the `src` directory and compile all `.java` files.
     ```bash
     cd src
-    javac com/scheduler/*.java
+    javac -d bin src/com/scheduler/*.java
     ```
 
 3.  **Run the application**:
     From the `src` directory, run the `Main` class.
     ```bash
-    java com.scheduler.Main
+    java -cp bin com.scheduler.Main
     ```
 
 ---
 ### Example Output
 
 The output will show jobs being submitted and then executed by the worker threads, with higher-priority jobs (like B and G) being picked first. Finally, it will display a benchmark comparing the multi-threaded performance to a single-threaded approach.
+```
+--- Starting Asynchronous Job Execution (Multi-threaded) ---
+4 worker threads started.
+
+Submitting 10 jobs with varying priorities...
+New Job Submitted: Job A (Priority: 5)
+New Job Submitted: Job B (Priority: 1)
+Executing Job: Job A (Priority: 5) on thread Worker-1
+New Job Submitted: Job C (Priority: 3)
+New Job Submitted: Job D (Priority: 10)
+New Job Submitted: Job E (Priority: 2)
+Executing Job: Job B (Priority: 1) on thread Worker-4
+New Job Submitted: Job F (Priority: 3)
+New Job Submitted: Job G (Priority: 1)
+Executing Job: Job C (Priority: 3) on thread Worker-2
+Executing Job: Job E (Priority: 2) on thread Worker-3
+New Job Submitted: Job H (Priority: 5)
+New Job Submitted: Job I (Priority: 8)
+New Job Submitted: Job J (Priority: 2)
+Finished Job: Job A
+Executing Job: Job G (Priority: 1) on thread Worker-1
+Finished Job: Job B
+Executing Job: Job J (Priority: 2) on thread Worker-4
+Finished Job: Job C
+Executing Job: Job F (Priority: 3) on thread Worker-2
+Finished Job: Job E
+Executing Job: Job H (Priority: 5) on thread Worker-3
+Finished Job: Job G
+Finished Job: Job J
+Executing Job: Job D (Priority: 10) on thread Worker-4
+Executing Job: Job I (Priority: 8) on thread Worker-1
+Finished Job: Job F
+Finished Job: Job H
+Finished Job: Job D
+Scheduler shutting down...
+Finished Job: Job I
+Worker-4 is terminating.
+Worker-3 is terminating.
+Worker-2 is terminating.
+Worker-1 is terminating.
+All worker threads have shut down.
+--- Asynchronous Execution Finished ---
+
+
+--- Starting Synchronous Job Execution (Single-threaded) ---
+Executing Job: Job B (Priority: 1) on thread main
+Finished Job: Job B
+Executing Job: Job G (Priority: 1) on thread main
+Finished Job: Job G
+Executing Job: Job E (Priority: 2) on thread main
+Finished Job: Job E
+Executing Job: Job J (Priority: 2) on thread main
+Finished Job: Job J
+Executing Job: Job C (Priority: 3) on thread main
+Finished Job: Job C
+Executing Job: Job F (Priority: 3) on thread main
+Finished Job: Job F
+Executing Job: Job H (Priority: 5) on thread main
+Finished Job: Job H
+Executing Job: Job A (Priority: 5) on thread main
+Finished Job: Job A
+Executing Job: Job I (Priority: 8) on thread main
+Finished Job: Job I
+Executing Job: Job D (Priority: 10) on thread main
+Finished Job: Job D
+--- Synchronous Execution Finished ---
+
+
+--- Benchmark Summary ---
+Number of Jobs: 10
+Number of Threads: 4
+Synchronous (Single-threaded) Execution Time: 10245 ms
+Asynchronous (Multi-threaded) Execution Time: 3088 ms
+Performance Gain (Speedup): 3.32x
+```
 
 
 ## 📄 License
